@@ -6,11 +6,17 @@ int main(int argc, char** argv) {
   return RUN_ALL_TESTS();
 }
 
-std::string convertArabicNumberToRomanNumeral(const unsigned int arabicNumber) {
-  if (arabicNumber == 2) {
-    return "II";
+std::string convertArabicNumberToRomanNumeral(unsigned int arabicNumber) {
+  std::string romanNumeral;
+  if (arabicNumber == 10) {
+    return "X";
+  } else {
+    while (arabicNumber >= 1) {
+      romanNumeral += "I";
+      arabicNumber--;
+    }
+    return romanNumeral;
   }
-  return "I";
 }
 
 TEST(ArabicToRomanNumeralsConverterTestCase, 1_isConvertedTo_I) {
@@ -20,3 +26,12 @@ TEST(ArabicToRomanNumeralsConverterTestCase, 1_isConvertedTo_I) {
 TEST(ArabicToRomanNumeralsConverterTestCase, 2_isConvertedTo_II) {
   ASSERT_EQ("II", convertArabicNumberToRomanNumeral(2));
 }
+
+TEST(ArabicToRomanNumeralsConverterTestCase, 3_isConvertedTo_III) {
+  ASSERT_EQ("III", convertArabicNumberToRomanNumeral(3));
+}
+
+TEST(ArabicToRomanNumeralsConverterTestCase, 10_isConvertedTo_X) {
+  ASSERT_EQ("X", convertArabicNumberToRomanNumeral(10));
+}
+
