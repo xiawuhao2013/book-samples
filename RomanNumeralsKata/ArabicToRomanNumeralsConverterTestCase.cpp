@@ -12,26 +12,22 @@ struct ArabicToRomanMapping {
   std::string romanNumeral;
 };
 
-const std::size_t numberOfMappings = 1;
+const std::size_t numberOfMappings = 3;
 using ArabicToRomanMappings = std::array<ArabicToRomanMapping, numberOfMappings>;
 
-const ArabicToRomanMappings arabicToRomanMappings = {
-  { 100, "C" }
-};
+const ArabicToRomanMappings arabicToRomanMappings = { {
+  { 100, "C" },
+  {  10, "X" },
+  {   1, "I" }
+} };
 
 std::string convertArabicNumberToRomanNumeral(unsigned int arabicNumber) {
   std::string romanNumeral;
-  while (arabicNumber >= arabicToRomanMappings[0].arabicNumber) {
-    romanNumeral += arabicToRomanMappings[0].romanNumeral;
-    arabicNumber -= arabicToRomanMappings[0].arabicNumber;
-  }
-  while (arabicNumber >= 10) {
-    romanNumeral += "X";
-    arabicNumber -= 10;
-  }
-  while (arabicNumber >= 1) {
-    romanNumeral += "I";
-    arabicNumber--;
+  for (auto mapping : arabicToRomanMappings) {
+    while (arabicNumber >= mapping.arabicNumber) {
+      romanNumeral += mapping.romanNumeral;
+      arabicNumber -= mapping.arabicNumber;
+    }
   }
   return romanNumeral;
 }
