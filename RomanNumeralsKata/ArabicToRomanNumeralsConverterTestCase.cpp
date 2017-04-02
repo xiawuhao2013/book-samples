@@ -1,16 +1,29 @@
 #include <gtest/gtest.h>
 #include <string>
+#include <array>
 
 int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
 
+struct ArabicToRomanMapping {
+  unsigned int arabicNumber;
+  std::string romanNumeral;
+};
+
+const std::size_t numberOfMappings = 1;
+using ArabicToRomanMappings = std::array<ArabicToRomanMapping, numberOfMappings>;
+
+const ArabicToRomanMappings arabicToRomanMappings = {
+  { 100, "C" }
+};
+
 std::string convertArabicNumberToRomanNumeral(unsigned int arabicNumber) {
   std::string romanNumeral;
-  while (arabicNumber >= 100) {
-    romanNumeral += "C";
-    arabicNumber -= 100;
+  while (arabicNumber >= arabicToRomanMappings[0].arabicNumber) {
+    romanNumeral += arabicToRomanMappings[0].romanNumeral;
+    arabicNumber -= arabicToRomanMappings[0].arabicNumber;
   }
   while (arabicNumber >= 10) {
     romanNumeral += "X";
