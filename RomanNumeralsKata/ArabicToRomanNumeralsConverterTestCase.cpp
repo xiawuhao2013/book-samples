@@ -7,20 +7,16 @@ int main(int argc, char** argv) {
 }
 
 std::string convertArabicNumberToRomanNumeral(unsigned int arabicNumber) {
-  if (arabicNumber == 10) {
-    return "X";
-  } else if (arabicNumber == 20) {
-    return "XX";
-  } else if (arabicNumber == 30) {
-    return "XXX";
-  } else {
-    std::string romanNumeral;
-    while (arabicNumber >= 1) {
-      romanNumeral += "I";
-      arabicNumber--;
-    }
-    return romanNumeral;
+  std::string romanNumeral;
+  while (arabicNumber >= 10) {
+    romanNumeral += "X";
+    arabicNumber -= 10;
   }
+  while (arabicNumber >= 1) {
+    romanNumeral += "I";
+    arabicNumber--;
+  }
+  return romanNumeral;
 }
 
 TEST(ArabicToRomanNumeralsConverterTestCase, 1_isConvertedTo_I) {
