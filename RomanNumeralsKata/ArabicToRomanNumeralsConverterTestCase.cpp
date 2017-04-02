@@ -8,19 +8,17 @@ int main(int argc, char** argv) {
 
 std::string convertArabicNumberToRomanNumeral(unsigned int arabicNumber) {
   std::string romanNumeral;
-  if (arabicNumber == 100) {
-    romanNumeral = "C";
-  } else if (arabicNumber == 200) {
-    romanNumeral = "CC";
-  } else {
-    while (arabicNumber >= 10) {
-      romanNumeral += "X";
-      arabicNumber -= 10;
-    }
-    while (arabicNumber >= 1) {
-      romanNumeral += "I";
-      arabicNumber--;
-    }
+  while (arabicNumber >= 100) {
+    romanNumeral += "C";
+    arabicNumber -= 100;
+  }
+  while (arabicNumber >= 10) {
+    romanNumeral += "X";
+    arabicNumber -= 10;
+  }
+  while (arabicNumber >= 1) {
+    romanNumeral += "I";
+    arabicNumber--;
   }
   return romanNumeral;
 }
@@ -55,4 +53,5 @@ TEST(ArabicToRomanNumeralsConverterTestCase, conversionOfArabicNumbersToRomanNum
   assertThat(33).isConvertedToRomanNumeral("XXXIII");
   assertThat(100).isConvertedToRomanNumeral("C");
   assertThat(200).isConvertedToRomanNumeral("CC");
+  assertThat(300).isConvertedToRomanNumeral("CCC");
 }
