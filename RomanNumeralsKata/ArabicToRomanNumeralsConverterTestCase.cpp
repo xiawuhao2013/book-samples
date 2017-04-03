@@ -12,14 +12,18 @@ struct ArabicToRomanMapping {
   std::string romanNumeral;
 };
 
-const std::size_t numberOfMappings = 9;
+const std::size_t numberOfMappings { 13 };
 using ArabicToRomanMappings = std::array<ArabicToRomanMapping, numberOfMappings>;
 
 const ArabicToRomanMappings arabicToRomanMappings = { {
     { 1000, "M"  },
+    {  900, "CM" },
     {  500, "D"  },
+    {  400, "CD" },
     {  100, "C"  },
+    {   90, "XC" },
     {   50, "L"  },
+    {   40, "XL" },
     {   10, "X"  },
     {    9, "IX" },
     {    5, "V"  },
@@ -72,13 +76,16 @@ TEST(ArabicToRomanNumeralsConverterTestCase, conversionOfArabicNumbersToRomanNum
   assertThat(33).isConvertedToRomanNumeral("XXXIII");
   assertThat(37).isConvertedToRomanNumeral("XXXVII");
   assertThat(50).isConvertedToRomanNumeral("L");
+  assertThat(99).isConvertedToRomanNumeral("XCIX");
   assertThat(100).isConvertedToRomanNumeral("C");
   assertThat(200).isConvertedToRomanNumeral("CC");
   assertThat(300).isConvertedToRomanNumeral("CCC");
+  assertThat(499).isConvertedToRomanNumeral("CDXCIX");
   assertThat(500).isConvertedToRomanNumeral("D");
   assertThat(1000).isConvertedToRomanNumeral("M");
   assertThat(2000).isConvertedToRomanNumeral("MM");
+  assertThat(2017).isConvertedToRomanNumeral("MMXVII");
   assertThat(3000).isConvertedToRomanNumeral("MMM");
   assertThat(3333).isConvertedToRomanNumeral("MMMCCCXXXIII");
-
+  assertThat(3999).isConvertedToRomanNumeral("MMMCMXCIX");
 }
