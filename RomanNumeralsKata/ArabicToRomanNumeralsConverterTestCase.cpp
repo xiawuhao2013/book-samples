@@ -12,11 +12,12 @@ struct ArabicToRomanMapping {
   std::string romanNumeral;
 };
 
-const std::size_t numberOfMappings = 6;
+const std::size_t numberOfMappings = 7;
 using ArabicToRomanMappings = std::array<ArabicToRomanMapping, numberOfMappings>;
 
 const ArabicToRomanMappings arabicToRomanMappings = { {
     { 1000, "M" },
+    {  500, "D" },
     {  100, "C" },
     {   50, "L" },
     {   10, "X" },
@@ -70,6 +71,7 @@ TEST(ArabicToRomanNumeralsConverterTestCase, conversionOfArabicNumbersToRomanNum
   assertThat(100).isConvertedToRomanNumeral("C");
   assertThat(200).isConvertedToRomanNumeral("CC");
   assertThat(300).isConvertedToRomanNumeral("CCC");
+  assertThat(500).isConvertedToRomanNumeral("D");
   assertThat(1000).isConvertedToRomanNumeral("M");
   assertThat(2000).isConvertedToRomanNumeral("MM");
   assertThat(3000).isConvertedToRomanNumeral("MMM");
